@@ -14,10 +14,10 @@ services:
     environment:
       - LT_LOAD_ONLY=en,it,es
     networks:
-      - coolify-infra
+      - coolify
 
 networks:
-  coolify-infra:
+  coolify:
     external: true
 # volumes:
 #   lt-local:
