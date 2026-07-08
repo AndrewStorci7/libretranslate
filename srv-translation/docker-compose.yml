@@ -14,7 +14,7 @@ services:
     environment:
       - LT_LOAD_ONLY=en,it,es
     networks:
-      - coolify-network
+      - coolify-infra
 
 networks:
   coolify-infra:
