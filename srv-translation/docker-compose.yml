@@ -2,7 +2,7 @@ services:
   lt:
     image: libretranslate/libretranslate:latest
     container_name: libretranslate
-    user: "1001:1001"
+    user: "1032:1032"
     restart: always
     ports:
       - "5000:5000"
@@ -12,7 +12,8 @@ services:
       - ./lt-config:/home/libretranslate/.config
       - ./lt-cache:/home/libretranslate/.cache
     environment:
-      - LT_LOAD_ONLY=en,it,es
+      - 'LT_LOAD_ONLY=en,it,es'
+      - 'LT_WORKERS=2'
     networks:
       - coolify
 
