@@ -1,19 +1,19 @@
 services:
   lt:
-    image: libretranslate/libretranslate:latest
+    image: 'libretranslate/libretranslate:latest'
     container_name: libretranslate
-    user: "1032:1032"
+    user: '1032:1032'
     restart: always
     ports:
-      - "5000:5000"
+      - '5000:5000'
     volumes:
-      - ./lt-data:/home/libretranslate/.local # Salva i modelli nella cartella locale lt-data
-      - ./lt-db:/app/db
-      - ./lt-config:/home/libretranslate/.config
-      - ./lt-cache:/home/libretranslate/.cache
+      - 'lt-forced-data:/home/libretranslate/.local'
+      - 'lt-forced-db:/app/db'
+      - 'lt-forced-config:/home/libretranslate/.config'
+      - 'lt-forced-cache:/home/libretranslate/.cache'
     environment:
       - 'LT_LOAD_ONLY=en,it,es'
-      - 'LT_WORKERS=2'
+    command: ["/app/venv/bin/gunicorn", "-b", "0.0.0.0:5000", "-w", "2", "libretranslate.main:app"]
     networks:
       - coolify
 
@@ -22,7 +22,36 @@ networks:
     external: true
 
 volumes:
-  lt-data:
-  lt-db:
-  lt-config:
-  lt-cache:
+  lt-forced-data:
+  lt-forced-db:
+  lt-forced-config:
+  lt-forced-cache:
+
+#services:
+#  lt:
+#    image: libretranslate/libretranslate:latest
+#    container_name: libretranslate
+#    user: "1032:1032"
+#    restart: always
+#    ports:
+#      - "5000:5000"
+#    volumes:
+#      - ./lt-data:/home/libretranslate/.local # Salva i modelli nella cartella locale lt-data
+#      - ./lt-db:/app/db
+#      - ./lt-config:/home/libretranslate/.config
+#      - ./lt-cache:/home/libretranslate/.cache
+#    environment:
+#      - 'LT_LOAD_ONLY=en,it,es'
+#      - 'LT_WORKERS=2'
+#    networks:
+#      - coolify
+#
+#networks:
+#  coolify:
+#    external: true
+#
+#volumes:
+#  lt-data:
+#  lt-db:
+#  lt-config:
+#  lt-cache:
