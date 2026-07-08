@@ -2,7 +2,7 @@ services:
   lt:
     image: libretranslate/libretranslate:latest
     container_name: libretranslate
-    # user: "1032:1032"
+    user: "1001:1001"
     restart: always
     ports:
       - "5000:5000"
