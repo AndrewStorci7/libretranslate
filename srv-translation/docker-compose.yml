@@ -19,7 +19,9 @@ services:
 networks:
   coolify:
     external: true
-# volumes:
-#   lt-local:
-#   lt-config:
-#   lt-cache:
+
+volumes:
+  lt-data:
+  lt-db:
+  lt-config:
+  lt-cache:
