@@ -17,7 +17,7 @@ services:
       - coolify-network
 
 networks:
-  coolify-network:
+  coolify-infra:
     external: true
 # volumes:
 #   lt-local:
